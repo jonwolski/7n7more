@@ -46,45 +46,39 @@ local add_or_cat_arrays = function(a, b)
   end
 end
 
+
+
 -- from util.lua
 table_metatable.__add = add_or_cat_arrays
-a0 = {1,2,3}
-a1 = {4,5,6}
-setmetatable(a0, table_metatable)
-setmetatable(a1, table_metatable)
-a1_2 = a0 + a1
 
 function exercise_medium1()
+  a0 = {1,2,3}
+  a1 = {4,5,6}
+  setmetatable(a0, table_metatable)
+  setmetatable(a1, table_metatable)
+  a1_2 = a0 + a1
+
   print( "a0: " .. tostring( a0 ) .. "\n" )
   print( "a1: " .. tostring( a1 ) .. "\n" )
   print( "a0 + a1: " .. tostring( a1_2 ) .. "\n" )
 end
 
-Queue = {
-  queue = {},
-
-  new = function( )
-    local obj = {
-      queue = self.queue
-    }
-
-    setmetatable( obj, self )
-    self.__index = self
-
-    return obj
-  end,
-
-  add = function( item )
-    table.insert( self.queue, 1, item )
-    return self
-  end,
-
-  remove = function()
-    local val = table[#table]
-    table[#table] = nil
-    return val
-  end
-
-}
 
 
+dofile( 'queue.lua' )
+
+function exercise_medium2()
+  local q = Queue:new()
+  q:add(1)
+  q:add(2)
+  q:add(3)
+  -- print 1 2 3 nil
+  print(
+    tostring( q:remove() ) .. ", " ..
+    tostring( q:remove() ) .. ", " ..
+    tostring( q:remove() ) .. ", " ..
+    tostring( q:remove() )
+  )
+end
+
+exercise_medium2()
