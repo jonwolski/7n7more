@@ -68,16 +68,16 @@ end
 dofile( 'queue.lua' )
 
 function exercise_medium2()
-  local q = Queue:new()
-  q:add(1)
-  q:add(2)
-  q:add(3)
+  local q = Queue.new()
+  q.add(1)
+  q.add(2)
+  q.add(3)
   -- print 1 2 3 nil
   print(
-    tostring( q:remove() ) .. ", " ..
-    tostring( q:remove() ) .. ", " ..
-    tostring( q:remove() ) .. ", " ..
-    tostring( q:remove() )
+    tostring( q.remove() ) .. ", " ..
+    tostring( q.remove() ) .. ", " ..
+    tostring( q.remove() ) .. ", " ..
+    tostring( q.remove() )
   )
 end
 

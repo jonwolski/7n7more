@@ -1,22 +1,24 @@
 Queue = {
-  __index = Queue,
 
   new = function()
-    local self = setmetatable( {}, Queue )
-    self.queue = {}
+    local queue = {}
 
-    return self
-  end,
+    local add = function( item )
+      table.insert( queue, 1, item )
+    end
 
-  add = function( self, item )
-    table.insert( self.queue, 1, item )
-    return self
-  end,
+    local remove = function()
+      local val = queue[#queue]
+      queue[#queue] = nil
+      return val
+    end
 
-  remove = function(self)
-    local val = self.queue[#self.queue]
-    self.queue[#self.queue] = nil
-    return val
+    local obj = {
+      add=add,
+      remove=remove
+    }
+    return obj
+
   end
 
 }
